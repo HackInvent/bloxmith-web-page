@@ -1,0 +1,23 @@
+{
+  "kind": "web_page",
+  "title": "Web Page",
+  "version": "0.1.0",
+  "bloxsmith_compatibility": ["1.0.9"],
+  "tested_with_bloxsmith": "1.0.9",
+  "ports": {
+    "inputs": [{"id": 1, "name": "in", "title": "Donnees", "accepts": ["message/*", "text/*", "application/json"], "multiplicity": "one", "required": false, "execution_requirement": "not_required_for_execution"}],
+    "outputs": []
+  },
+  "config": {
+    "page": {
+      "path": "index",
+      "html": "<main><p class=\"eyebrow\">WORKFLOW LIVE</p><h1>Ma page web</h1><p>Derniere valeur recue :</p><pre>@inputs.in</pre><p id=\"detail\"></p></main>",
+      "css": "body { margin: 0; background: #f1f6f5; color: #163c40; font-family: Georgia, serif; } main { max-width: 760px; margin: 8vh auto; padding: 32px; } h1 { font-size: clamp(32px, 6vw, 64px); } .eyebrow { font: 12px sans-serif; letter-spacing: .2em; } pre { background: white; padding: 24px; white-space: pre-wrap; overflow-wrap: anywhere; border-left: 4px solid #237a7b; }",
+      "javascript": "// Execute uniquement dans le navigateur, a chaque nouvelle publication.\nconst element = document.getElementById('detail');\nif (element) element.textContent = 'Vue : ' + (bloxPage.query.view || 'complete');",
+      "query_parameters": {"view": "complete"}
+    }
+  },
+  "web_page": {"config_key": "page"},
+  "port_capabilities": {"can_add_inputs": true, "can_add_outputs": false, "allow_required_input": false, "default_required": false, "default_input_accepts": ["message/*", "text/*", "application/json"], "default_multiplicity": "one", "max_outputs": 0},
+  "runtime": {"initial_state": "waiting", "runtime_executable": true, "active_worker": true, "centralized_executor": "generic", "centralized_dependency_mode": "any_event", "active_execution_policy": "on_each_event"}
+}

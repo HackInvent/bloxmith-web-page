@@ -1,0 +1,1 @@
+"""Autonomous web page block."""
