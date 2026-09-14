@@ -2,6 +2,7 @@
 
 from pathlib import Path
 import sys
+import shutil
 sys.path.insert(0, str(Path(__file__).resolve().parents[3]))
 sys.path.insert(0, str(Path(__file__).resolve().parents[3] / "tests"))
 from playwright.sync_api import sync_playwright, expect as visible
@@ -17,7 +18,17 @@ from ui_smoke_common import (
 def main():
     """Edit through the real shell and validate both the browser boundary and delivery UX."""
     with isolated_server() as server, sync_playwright() as playwright:
+        # Exercise the exact-release host: bundled assets cannot detect a missing manifest.
+        library = server.root_dir / "release-test-blocks"
+        shutil.copytree(Path(__file__).resolve().parents[1], library / "web_page")
+        management = "/api/application/block-management"
+        http_json(server.base_url, management + "/settings", method="POST", payload={
+            "block_sources": [{"id": "web-page-test", "type": "directory", "location": str(library)}]})
+        candidates = http_json(server.base_url, management + "/discover", method="POST", payload={})["items"]
+        http_json(server.base_url, management + "/install", method="POST", payload={
+            "candidate_id": candidates[0]["candidate_id"]})
         node = node_payload_for_block(get_block_definition("web_page"))
+        node["block_version"] = "0.1.0"
         node["position"] = {"x": 450, "y": 180}
         node["config"]["page"]["javascript"] += """
 try { parent.document.title; document.body.dataset.parent = 'unsafe'; }
@@ -66,10 +77,13 @@ fetch('/api/health').then(() => document.body.dataset.network = 'unsafe')
 
             editor = context.new_page()
             wait_for_app_ready(editor, project_editor_url(server.base_url, graph_id, workspace_project_id=workspace_id))
-            visible(editor.locator("[data-web-page-node-card]")).to_contain_text("Page / index")
+            visible(editor.locator(f'.canvas-node[data-node-id="{node["id"]}"]')).to_contain_text(node["title"])
             editor.locator(f'.canvas-node[data-node-id="{node["id"]}"]').dblclick()
             modal = editor.locator(".web-page-modal")
             visible(modal).to_be_visible()
+            expect(modal.evaluate("el => getComputedStyle(el).display === 'flex'"), "Release editor CSS did not load")
+            expect(modal.locator(".web-page-scroll").evaluate("el => getComputedStyle(el).overflowY === 'auto'"),
+                   "Editor lost its internal scroll area")
             visible(modal.locator("[data-page-url]")).to_have_value(server.base_url + snapshot["url"])
             visible(modal.locator("aside")).to_contain_text("@inputs.in.title")
             visible(modal.locator("aside")).to_contain_text("@@inputs.in.title")

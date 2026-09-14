@@ -71,6 +71,20 @@ To display a literal reference, double the `@`: `@@inputs.in.title` displays `@i
 
 Substitution applies only to HTML, not CSS/JavaScript sources, contents of `<script>`/`<style>`, `style`/`on...` attributes or HTML comments. JavaScript access remains `bloxPage.data.inputs.in.title` (or `bloxPage.data.inputs?.in?.title` before receiving data). This is not an expression engine: no loops, Python evaluation, server-side JS or raw HTML insertion from inputs. The former double-brace notation is not interpreted, and saved sources are not converted automatically.
 
+## Versioned editor assets
+
+The release declares its modal and inspector CSS/JavaScript in `model.json.ui_assets`.
+Both entrypoints export `mount(root, api, context)` and share the module-local
+`mountEditor` helper. They do not register bundled-kind browser globals. Editor CSS
+is scoped to `[data-block-release="web_page@0.1.0"]` so other releases and the
+application shell keep their own styles.
+
+This repairs the versioned package editor opening without styles, tab handlers or
+the saved page URL. It does not change published page sources or input processing.
+For an explicitly linked development library, use the guarded **Recharger les blocs**
+action after updating package files, then reload the blueprint browser tab. Managed
+copies must be updated through the package installation workflow.
+
 ## Interface and security
 
 The modal separates Page, HTML, CSS, JavaScript, Ports and Error. Error reuses the generic runtime diagnostic inside the modal's scrolling area. Changes stay local until Save. Tabs and runtime updates do not reset drafts. Closing without saving discards edits. The page link always opens the saved configuration. A rejected configuration shows its error in the modal and leaves fields editable without changing the saved page. The footer remains accessible with internal scrolling.
@@ -94,7 +108,7 @@ python3 -B tests/F11.32_web_pages.py
 python3 -B tests/F12.140_web_pages_http.py
 ```
 
-The HTTP test executes a real graph in both engines. The browser test uses real application assets and CSS, exercising desktop/mobile modals, parent-context protection and WebSocket updates without periodic visitor-side HTTP polling. Tests cover HTML `@inputs`/`@data`/`@query` references, `@@` escaping, rendering limits, reference boundaries and unchanged JavaScript access.
+The HTTP test executes a real graph in both engines. The browser test explicitly installs the package as `web_page@0.1.0` and uses real application assets and CSS, exercising desktop/mobile modals, loaded release styles, tab handlers, parent-context protection and WebSocket updates without periodic visitor-side HTTP polling. The runtime suite covers both `centralized` and `zeromq_active` modes. Tests cover HTML `@inputs`/`@data`/`@query` references, `@@` escaping, rendering limits, reference boundaries and unchanged JavaScript access.
 
 ## Compatibility policy
 
