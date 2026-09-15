@@ -1,7 +1,7 @@
 # Web Page
 
 <!-- block-metadata:start -->
-[![Block version: 0.1.0](https://img.shields.io/badge/block-0.1.0-blue)](model.json)
+[![Block version: 0.1.1](https://img.shields.io/badge/block-0.1.1-blue)](model.json)
 [![BloxSmith compatibility: 1.0.9](https://img.shields.io/badge/BloxSmith-1.0.9-brightgreen)](compatibility.json)
 [![License: Apache-2.0](https://img.shields.io/badge/license-Apache--2.0-blue)](LICENSE)
 
@@ -13,7 +13,7 @@ Verified BloxSmith versions: **1.0.9** (bundled-block tests; see [test evidence]
 
 `web_page` publishes a web page whose HTML, CSS and JavaScript sources belong to the block. Inputs update its server-side data even when no browser is open. JavaScript runs only in the visitor's browser.
 
-Block version: `0.1.0`. Declared and tested compatibility: BloxSmith `1.0.9`. The block uses generic executors in One Shot Simulation (`centralized`) and Active Runtime (`zeromq_active`), without its own HTTP server or socket.
+Block version: `0.1.1`. Declared and tested compatibility: BloxSmith `1.0.9`. The block uses generic executors in One Shot Simulation (`centralized`) and Active Runtime (`zeromq_active`), without its own HTTP server or socket.
 
 ## Static model
 
@@ -76,7 +76,7 @@ Substitution applies only to HTML, not CSS/JavaScript sources, contents of `<scr
 The release declares its modal and inspector CSS/JavaScript in `model.json.ui_assets`.
 Both entrypoints export `mount(root, api, context)` and share the module-local
 `mountEditor` helper. They do not register bundled-kind browser globals. Editor CSS
-is scoped to `[data-block-release="web_page@0.1.0"]` so other releases and the
+is scoped to `[data-block-release="web_page@0.1.1"]` so other releases and the
 application shell keep their own styles.
 
 This repairs the versioned package editor opening without styles, tab handlers or
@@ -108,7 +108,7 @@ python3 -B tests/F11.32_web_pages.py
 python3 -B tests/F12.140_web_pages_http.py
 ```
 
-The HTTP test executes a real graph in both engines. The browser test explicitly installs the package as `web_page@0.1.0` and uses real application assets and CSS, exercising desktop/mobile modals, loaded release styles, tab handlers, parent-context protection and WebSocket updates without periodic visitor-side HTTP polling. The runtime suite covers both `centralized` and `zeromq_active` modes. Tests cover HTML `@inputs`/`@data`/`@query` references, `@@` escaping, rendering limits, reference boundaries and unchanged JavaScript access.
+The HTTP test executes a real graph in both engines. The browser test explicitly installs the package as `web_page@0.1.1` and uses real application assets and CSS, exercising desktop/mobile modals, loaded release styles, tab handlers, parent-context protection and WebSocket updates without periodic visitor-side HTTP polling. The runtime suite covers both `centralized` and `zeromq_active` modes. Tests cover HTML `@inputs`/`@data`/`@query` references, `@@` escaping, rendering limits, reference boundaries and unchanged JavaScript access.
 
 ## Compatibility policy
 

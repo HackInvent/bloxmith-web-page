@@ -28,7 +28,7 @@ def main():
         http_json(server.base_url, management + "/install", method="POST", payload={
             "candidate_id": candidates[0]["candidate_id"]})
         node = node_payload_for_block(get_block_definition("web_page"))
-        node["block_version"] = "0.1.0"
+        node["block_version"] = "0.1.1"
         node["position"] = {"x": 450, "y": 180}
         node["config"]["page"]["javascript"] += """
 try { parent.document.title; document.body.dataset.parent = 'unsafe'; }
