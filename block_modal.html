@@ -15,7 +15,7 @@
       <label>URL enregistree<input type="text" data-page-url readonly aria-label="URL enregistree"></label>
       <a class="ghost-btn web-page-open" data-page-open target="_blank" rel="noopener noreferrer">Ouvrir la page enregistree</a>
       <label>URL parameters and default values (JSON)<textarea data-page-field="query_parameters" rows="5" spellcheck="false">%%query_parameters%%</textarea></label>
-      <p class="field-hint">Exemple : {"view":"complete"}. Les parametres ne modifient pas le graphe.</p>
+      <p class="field-hint">Example: {"view":"complete"}. The parameters do not change the graph.</p>
       <aside>In the HTML: <code>@inputs.in</code>, <code>@inputs.in.title</code>, <code>@query.view</code>.<br>To display a reference without substituting it: <code>@@inputs.in.title</code>.<br>In the JavaScript: <code>bloxPage.data.inputs</code> et <code>bloxPage.query</code>.<br>An update reloads the isolated page. No network, cookie or application API access from your code.</aside>
     </section>
     <section role="tabpanel" data-page-panel="html" hidden><label>Page HTML<textarea class="web-page-code" data-page-field="html" spellcheck="false">%%html%%</textarea></label></section>

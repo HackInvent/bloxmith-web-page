@@ -27,9 +27,9 @@
   "config": {
     "page": {
       "path": "index",
-      "html": "<main><p class=\"eyebrow\">WORKFLOW LIVE</p><h1>Ma page web</h1><p>Derniere valeur recue :</p><pre>@inputs.in</pre><p id=\"detail\"></p></main>",
+      "html": "<main><p class=\"eyebrow\">WORKFLOW LIVE</p><h1>My web page</h1><p>Latest value received:</p><pre>@inputs.in</pre><p id=\"detail\"></p></main>",
       "css": "body { margin: 0; background: #f1f6f5; color: #163c40; font-family: Georgia, serif; } main { max-width: 760px; margin: 8vh auto; padding: 32px; } h1 { font-size: clamp(32px, 6vw, 64px); } .eyebrow { font: 12px sans-serif; letter-spacing: .2em; } pre { background: white; padding: 24px; white-space: pre-wrap; overflow-wrap: anywhere; border-left: 4px solid #237a7b; }",
-      "javascript": "// Execute uniquement dans le navigateur, a chaque nouvelle publication.\nconst element = document.getElementById('detail');\nif (element) element.textContent = 'Vue : ' + (bloxPage.query.view || 'complete');",
+      "javascript": "// Runs in the browser only, on every new publication.\nconst element = document.getElementById('detail');\nif (element) element.textContent = 'View: ' + (bloxPage.query.view || 'complete');",
       "query_parameters": {
         "view": "complete"
       }

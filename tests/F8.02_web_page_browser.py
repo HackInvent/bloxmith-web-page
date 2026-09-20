@@ -54,8 +54,8 @@ fetch('/api/health').then(() => document.body.dataset.network = 'unsafe')
             page.on("websocket", lambda socket: socket.on("framereceived", lambda value: notifications.append(value)))
             page.goto(server.base_url + snapshot["url"] + "?view=compact")
             frame = page.frame_locator("iframe")
-            visible(frame.locator("h1")).to_have_text("Ma page web")
-            visible(frame.locator("#detail")).to_have_text("Vue : compact")
+            visible(frame.locator("h1")).to_have_text("My web page")
+            visible(frame.locator("#detail")).to_have_text("View: compact")
             for probe in ("parent", "cookie", "network"):
                 visible(frame.locator("body")).to_have_attribute("data-" + probe, "blocked")
             # Use the same persistent Run entry point as the editor, not the one-shot active API.
