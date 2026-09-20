@@ -29,7 +29,7 @@ export function mountEditor(root, api, context) {
       fields.forEach(field => { field.disabled = true; });
       status.textContent = "Enregistrement...";
       await api.applyAction("save_page", {page: next, title});
-      page = next; link(); status.textContent = "Page enregistree. Le lien ouvre cette version.";
+      page = next; link(); status.textContent = "Page saved. The link opens this version.";
     } catch (error) { status.textContent = error.message || "Enregistrement impossible."; save.disabled = false; }
     finally { busy = false; fields.forEach(field => { field.disabled = Boolean(api.isReadOnly?.()); }); }
   });

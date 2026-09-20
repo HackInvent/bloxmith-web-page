@@ -3,13 +3,13 @@
     <div class="inspector-tabs"><button class="inspector-tab {{ general_active }}" data-inspector-tab="general" type="button">General</button><button class="inspector-tab {{ ports_active }}" data-inspector-tab="ports" type="button">Ports</button></div>
   </div>
   <div class="inspector-view {{ general_hidden }}" data-inspector-panel-tab="general">
-    <label>Nom du bloc<input data-page-field="title" type="text" value="%%title%%"></label>
+    <label>Block name<input data-page-field="title" type="text" value="%%title%%"></label>
     <label>Chemin relatif<input data-page-field="path" type="text" value="%%path%%" spellcheck="false"></label>
     <label>URL enregistree<input data-page-url readonly type="text"></label>
     <a class="ghost-btn web-page-open" data-page-open target="_blank" rel="noopener noreferrer">Ouvrir la page</a>
-    <p>Double-cliquez sur le bloc pour editer le HTML, CSS, JavaScript et les parametres URL.</p>
-    <p class="field-hint">La page existe avant Run. Elle affiche la derniere publication jusqu'au Reset.</p>
-    <span data-page-status role="status">Aucune modification.</span><button class="solid-btn" type="button" data-page-save disabled>Enregistrer</button>
+    <p>Double-click the block to edit the HTML, CSS, JavaScript and URL parameters.</p>
+    <p class="field-hint">The page exists before Run. It shows the last publication until Reset.</p>
+    <span data-page-status role="status">No change.</span><button class="solid-btn" type="button" data-page-save disabled>Enregistrer</button>
   </div>
-  <div class="inspector-view {{ ports_hidden }}" data-inspector-panel-tab="ports"><div class="ports-editor-header"><span>Entrees</span><button class="ghost-btn {{ add_input_hidden }}" data-add-input-port type="button" {{ add_input_disabled }}>+ Entree</button></div>{{ inputs_html }}</div>
+  <div class="inspector-view {{ ports_hidden }}" data-inspector-panel-tab="ports"><div class="ports-editor-header"><span>Inputs</span><button class="ghost-btn {{ add_input_hidden }}" data-add-input-port type="button" {{ add_input_disabled }}>+ Entree</button></div>{{ inputs_html }}</div>
 </div>
