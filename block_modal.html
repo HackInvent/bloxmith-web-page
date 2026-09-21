@@ -1,28 +1,28 @@
 <section class="modal-panel web-page-editor web-page-modal" role="dialog" aria-modal="true" aria-label="Web Page" data-block-runtime-refresh="autonomous">
-  <header class="web-page-heading"><div><span>PUBLICATION WEB</span><h2>%%title%%</h2><p>Sources are stored in the blueprint. JavaScript runs in the browser only.</p></div><button type="button" class="ghost-btn" data-close-block-modal aria-label="Close">Close</button></header>
+  <header class="web-page-heading"><div><span data-i18n="block.web_page.kicker">WEB PUBLICATION</span><h2>%%title%%</h2><p data-i18n="block.web_page.intro">Sources are stored in the blueprint. JavaScript runs in the browser only.</p></div><button type="button" class="ghost-btn" data-close-block-modal aria-label="Close" data-i18n="ui.block_kit.close">Close</button></header>
   <nav class="web-page-tabs" role="tablist" aria-label="Page editing">
-    <button type="button" role="tab" data-page-tab="page" aria-selected="true">Page</button>
+    <button type="button" role="tab" data-page-tab="page" aria-selected="true" data-i18n="block.web_page.tab_page">Page</button>
     <button type="button" role="tab" data-page-tab="html" aria-selected="false" tabindex="-1">HTML</button>
     <button type="button" role="tab" data-page-tab="css" aria-selected="false" tabindex="-1">CSS</button>
     <button type="button" role="tab" data-page-tab="javascript" aria-selected="false" tabindex="-1">JavaScript</button>
-    <button type="button" role="tab" data-page-tab="ports" aria-selected="false" tabindex="-1">Ports</button>
-    <button type="button" role="tab" data-page-tab="error" aria-selected="false" tabindex="-1">Erreur</button>
+    <button type="button" role="tab" data-page-tab="ports" aria-selected="false" tabindex="-1" data-i18n="ui.block_kit.ports">Ports</button>
+    <button type="button" role="tab" data-page-tab="error" aria-selected="false" tabindex="-1" data-i18n="block.web_page.tab_error">Error</button>
   </nav>
   <div class="web-page-scroll">
     <section role="tabpanel" data-page-panel="page">
-      <div class="web-page-grid"><label>Block name<input type="text" data-page-field="title" data-block-title-field value="%%title%%"></label><label>Chemin relatif<input type="text" data-page-field="path" value="%%path%%" placeholder="dashboard" spellcheck="false"></label></div>
-      <p class="field-hint">The URL carries the project, the blueprint, the instance and the block's unique identifier.</p>
-      <label>URL enregistree<input type="text" data-page-url readonly aria-label="URL enregistree"></label>
-      <a class="ghost-btn web-page-open" data-page-open target="_blank" rel="noopener noreferrer">Ouvrir la page enregistree</a>
-      <label>URL parameters and default values (JSON)<textarea data-page-field="query_parameters" rows="5" spellcheck="false">%%query_parameters%%</textarea></label>
-      <p class="field-hint">Example: {"view":"complete"}. The parameters do not change the graph.</p>
+      <div class="web-page-grid"><label><span data-i18n="ui.block_kit.block_name">Block name</span><input type="text" data-page-field="title" data-block-title-field value="%%title%%"></label><label><span data-i18n="block.web_page.path_label">Relative path</span><input type="text" data-page-field="path" value="%%path%%" placeholder="dashboard" spellcheck="false"></label></div>
+      <p class="field-hint" data-i18n="block.web_page.url_hint">The URL carries the project, the blueprint, the instance and the block's unique identifier.</p>
+      <label><span data-i18n="block.web_page.saved_url_label">Saved URL</span><input type="text" data-page-url readonly aria-label="Saved URL" data-i18n-aria-label="block.web_page.saved_url_label"></label>
+      <a class="ghost-btn web-page-open" data-page-open target="_blank" rel="noopener noreferrer" data-i18n="block.web_page.open_saved_page">Open the saved page</a>
+      <label><span data-i18n="block.web_page.query_label">URL parameters and default values (JSON)</span><textarea data-page-field="query_parameters" rows="5" spellcheck="false">%%query_parameters%%</textarea></label>
+      <p class="field-hint" data-i18n="block.web_page.query_hint">Example: {"view":"complete"}. The parameters do not change the graph.</p>
       <aside>In the HTML: <code>@inputs.in</code>, <code>@inputs.in.title</code>, <code>@query.view</code>.<br>To display a reference without substituting it: <code>@@inputs.in.title</code>.<br>In the JavaScript: <code>bloxPage.data.inputs</code> et <code>bloxPage.query</code>.<br>An update reloads the isolated page. No network, cookie or application API access from your code.</aside>
     </section>
-    <section role="tabpanel" data-page-panel="html" hidden><label>Page HTML<textarea class="web-page-code" data-page-field="html" spellcheck="false">%%html%%</textarea></label></section>
-    <section role="tabpanel" data-page-panel="css" hidden><label>Feuille de style CSS<textarea class="web-page-code" data-page-field="css" spellcheck="false">%%css%%</textarea></label></section>
-    <section role="tabpanel" data-page-panel="javascript" hidden><label>JavaScript navigateur<textarea class="web-page-code" data-page-field="javascript" spellcheck="false">%%javascript%%</textarea></label></section>
-    <section role="tabpanel" data-page-panel="ports" hidden><p>Add and name the inputs through the block's Ports context menu. Every name is available in <code>inputs</code>.</p>%%ports%%</section>
+    <section role="tabpanel" data-page-panel="html" hidden><label><span data-i18n="block.web_page.html_label">Page HTML</span><textarea class="web-page-code" data-page-field="html" spellcheck="false">%%html%%</textarea></label></section>
+    <section role="tabpanel" data-page-panel="css" hidden><label><span data-i18n="block.web_page.css_label">CSS stylesheet</span><textarea class="web-page-code" data-page-field="css" spellcheck="false">%%css%%</textarea></label></section>
+    <section role="tabpanel" data-page-panel="javascript" hidden><label><span data-i18n="block.web_page.javascript_label">Browser JavaScript</span><textarea class="web-page-code" data-page-field="javascript" spellcheck="false">%%javascript%%</textarea></label></section>
+    <section role="tabpanel" data-page-panel="ports" hidden><p data-i18n="block.web_page.ports_hint">Add and name the inputs through the block's Ports context menu. Every name is available in inputs.</p>%%ports%%</section>
     <section role="tabpanel" data-page-panel="error" data-block-modal-error-panel hidden>%%errors%%</section>
   </div>
-  <footer class="web-page-footer"><span data-page-status role="status">No change.</span><button class="solid-btn" type="button" data-page-save disabled>Enregistrer</button></footer>
+  <footer class="web-page-footer"><span data-page-status role="status">No change.</span><button class="solid-btn" type="button" data-page-save disabled data-i18n="block.web_page.save">Save</button></footer>
 </section>

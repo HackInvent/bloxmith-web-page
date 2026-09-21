@@ -1,6 +1,10 @@
 {
   "kind": "web_page",
   "title": "Web Page",
+  "locales": {
+    "en": "locales/en.json",
+    "fr": "locales/fr.json"
+  },
   "version": "0.1.1",
   "bloxsmith_compatibility": [
     "1.0.9"

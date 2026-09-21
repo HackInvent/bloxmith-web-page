@@ -1,4 +1,17 @@
 /** Bind one editor root to its saved page context and the host action API. */
+/**
+ * Resolve one block text in the active language, from the catalog of the owning release.
+ *
+ * @param {HTMLElement} element - Element inside the mounted surface, carrying its release.
+ * @param {string} key - Block catalog key.
+ * @param {string} fallback - Authored English text.
+ * @returns {string} Localized text.
+ */
+function text(element, key, fallback) {
+  const release = element?.closest?.("[data-block-release]")?.dataset?.blockRelease || "";
+  return window.CWI18n?.t?.(key, {}, fallback, release) ?? fallback;
+}
+
 export function mountEditor(root, api, context) {
   const status = root.querySelector("[data-page-status]");
   const save = root.querySelector("[data-page-save]");
@@ -27,10 +40,12 @@ export function mountEditor(root, api, context) {
         else next[key] = key === "query_parameters" ? JSON.parse(field.value) : field.value;
       });
       fields.forEach(field => { field.disabled = true; });
-      status.textContent = "Enregistrement...";
+      window.CWI18n?.setText?.(status, text(status, "block.web_page.saving", "Saving..."));
+      if (!window.CWI18n?.setText) status.textContent = text(status, "block.web_page.saving", "Saving...");
       await api.applyAction("save_page", {page: next, title});
-      page = next; link(); status.textContent = "Page saved. The link opens this version.";
-    } catch (error) { status.textContent = error.message || "Enregistrement impossible."; save.disabled = false; }
+      page = next; link(); window.CWI18n?.set?.(status, "block.web_page.saved", {}, "Page saved. The link opens this version.");
+    } catch (error) { window.CWI18n?.setText?.(status, error.message || text(status, "block.web_page.save_failed", "Saving failed."));
+      if (!window.CWI18n?.setText) status.textContent = error.message || text(status, "block.web_page.save_failed", "Saving failed."); save.disabled = false; }
     finally { busy = false; fields.forEach(field => { field.disabled = Boolean(api.isReadOnly?.()); }); }
   });
   const tabs = [...root.querySelectorAll("[data-page-tab]")];

@@ -34,8 +34,9 @@ class WebPageBlock(BlockDefinition):
         if publisher is None:
             raise WebPageError("Service de publication web indisponible.")
         publisher.publish({"inputs": inputs})
-        return BlockRuntimeResult(last_message=f"Page mise a jour : {len(inputs)} entree(s).",
-            logs=[f"[web-page] {context.node_id}: nouvelle publication."],
+        return BlockRuntimeResult(last_message=self.translate("block.web_page.updated", {"count": len(inputs)},
+                                        fallback=f"Page updated: {len(inputs)} input(s)."),
+            logs=[f"[web-page] {context.node_id}: new publication."],
             metadata={"input_count": len(inputs)})
 
     def ui_assets(self, surface="modal"):

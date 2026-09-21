@@ -1,15 +1,15 @@
 <div class="cw-block-inspector web-page-editor" data-block-inspector-root data-node-id="{{ node_id }}" data-node-type="{{ node_type }}">
   <div class="inspector-selection {{ summary_hidden }}"><div class="inspector-node-card"><div class="inspector-node-icon">{{ node_icon }}</div><div class="inspector-node-copy"><strong>{{ node_title }}</strong><span>{{ node_kind }}</span></div></div>
-    <div class="inspector-tabs"><button class="inspector-tab {{ general_active }}" data-inspector-tab="general" type="button">General</button><button class="inspector-tab {{ ports_active }}" data-inspector-tab="ports" type="button">Ports</button></div>
+    <div class="inspector-tabs"><button class="inspector-tab {{ general_active }}" data-inspector-tab="general" type="button" data-i18n="ui.block_kit.general">General</button><button class="inspector-tab {{ ports_active }}" data-inspector-tab="ports" type="button" data-i18n="ui.block_kit.ports">Ports</button></div>
   </div>
   <div class="inspector-view {{ general_hidden }}" data-inspector-panel-tab="general">
     <label>Block name<input data-page-field="title" type="text" value="%%title%%"></label>
     <label>Chemin relatif<input data-page-field="path" type="text" value="%%path%%" spellcheck="false"></label>
     <label>URL enregistree<input data-page-url readonly type="text"></label>
-    <a class="ghost-btn web-page-open" data-page-open target="_blank" rel="noopener noreferrer">Ouvrir la page</a>
-    <p>Double-click the block to edit the HTML, CSS, JavaScript and URL parameters.</p>
-    <p class="field-hint">The page exists before Run. It shows the last publication until Reset.</p>
-    <span data-page-status role="status">No change.</span><button class="solid-btn" type="button" data-page-save disabled>Enregistrer</button>
+    <a class="ghost-btn web-page-open" data-page-open target="_blank" rel="noopener noreferrer" data-i18n="block.web_page.open_page">Open the page</a>
+    <p data-i18n="block.web_page.inspector_hint">Double-click the block to edit the HTML, CSS, JavaScript and URL parameters.</p>
+    <p class="field-hint" data-i18n="block.web_page.inspector_lifecycle">The page exists before Run. It shows the last publication until Reset.</p>
+    <span data-page-status role="status">No change.</span><button class="solid-btn" type="button" data-page-save disabled data-i18n="block.web_page.save">Save</button>
   </div>
-  <div class="inspector-view {{ ports_hidden }}" data-inspector-panel-tab="ports"><div class="ports-editor-header"><span>Inputs</span><button class="ghost-btn {{ add_input_hidden }}" data-add-input-port type="button" {{ add_input_disabled }}>+ Entree</button></div>{{ inputs_html }}</div>
+  <div class="inspector-view {{ ports_hidden }}" data-inspector-panel-tab="ports"><div class="ports-editor-header"><span>Inputs</span><button class="ghost-btn {{ add_input_hidden }}" data-add-input-port type="button" {{ add_input_disabled }} data-i18n="block.web_page.add_input">+ Input</button></div>{{ inputs_html }}</div>
 </div>
