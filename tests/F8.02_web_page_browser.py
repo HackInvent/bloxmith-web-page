@@ -130,7 +130,7 @@ fetch('/api/health').then(() => document.body.dataset.network = 'unsafe')
             editor.keyboard.press("ArrowRight")
             visible(modal.locator('[data-page-tab="css"]')).to_have_attribute("aria-selected", "true")
             modal.locator('[data-page-tab="error"]').click()
-            visible(modal.locator("[data-block-modal-no-error]")).to_have_text("Pas d'erreur.")
+            visible(modal.locator("[data-block-modal-no-error]")).to_have_text("No error.")
             modal.locator("[data-close-block-modal]").click()
             visible(modal).not_to_be_visible()
             # Neither script fetch nor self-navigation may load an administrative application URL.
