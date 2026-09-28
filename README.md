@@ -10,9 +10,6 @@ Verified BloxSmith versions: **1.0.9** (bundled-block tests; see [test evidence]
 
 [![WEB PAGE — Serves a block-owned web page whose inputs update page data.](media/thumbnail.webp)](media/cover.png)
 
-*Concept illustration. [Artwork and generation prompt](media/README.md).*
-
-
 ## Overview
 
 `web_page` publishes a web page whose HTML, CSS and JavaScript sources belong to the block. Inputs update its server-side data even when no browser is open. JavaScript runs only in the visitor's browser.
